@@ -11,6 +11,8 @@ class HawkFabMenu extends StatefulWidget {
   final AnimatedIconData icon;
   final Color fabColor;
   final Color iconColor;
+  final bool hidden;
+
   HawkFabMenu({
     @required this.body,
     @required this.items,
@@ -18,6 +20,7 @@ class HawkFabMenu extends StatefulWidget {
     this.icon,
     this.fabColor,
     this.iconColor,
+    this.hidden
   }) {
     assert(this.items.length > 0);
   }
@@ -82,7 +85,7 @@ class _HawkFabMenuState extends State<HawkFabMenu>
           widget.body,
           _isOpen ? _buildBlurWidget() : Container(),
           _isOpen ? _buildMenuItemList() : Container(),
-          _buildMenuButton(context),
+          widget.hidden ? Container() : _buildMenuButton(context),
         ],
       ),
       onWillPop: _preventPopIfOpen,
